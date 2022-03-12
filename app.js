@@ -6,8 +6,6 @@ const port = 8080;
 app.use(cors());
 app.get("/tiles/pipelines", (req, res) => {
   const pgp = require("pg-promise")(/* options */);
-
-  res.status(200).send(process.env.DB_USERNAME);
   const db = pgp(
     `postgres://${process.env.DB_USERNAME}:${process.env.DB_AUTHENTICATION}@${process.env.HOST}:5432/${process.env.DB_NAME}`
   );
