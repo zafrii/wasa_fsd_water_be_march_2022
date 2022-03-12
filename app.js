@@ -6,6 +6,11 @@ const app = express();
 const port = 8080;
 
 app.use(cors());
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.get("/tiles/pipelines", (req, res) => {
   const pgp = require("pg-promise")(/* options */);
   const db = pgp(process.env.DATABASE_URL);
