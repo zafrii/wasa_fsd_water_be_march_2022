@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const express = require("express");
 var cors = require("cors");
 const app = express();
@@ -6,9 +8,7 @@ const port = 8080;
 app.use(cors());
 app.get("/tiles/pipelines", (req, res) => {
   const pgp = require("pg-promise")(/* options */);
-  const db = pgp(
-    `postgres://${process.env.DB_USERNAME}:${process.env.DB_AUTHENTICATION}@${process.env.HOST}:5432/${process.env.DB_NAME}`
-  );
+  const db = pgp(process.env.DATABASE_URL);
   console.log(req.query);
   const params = req.query;
   const query = `SELECT ST_AsMVT(q, 'pipelines', 4096, 'geom')
