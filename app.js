@@ -18,7 +18,7 @@ app.get("/tiles/pipelines", (req, res) => {
   const params = req.query;
   const query = `SELECT ST_AsMVT(q, 'pipelines', 4096, 'geom')
                   FROM (
-                    SELECT gid, class, dia_inch, diameter, depth, material, age, value, condition, status, remarks, shape_leng, depth_feet, length,
+                    SELECT gid, class, dia_inch, diameter, depth, material, age, valve, condition, status, remarks, shape_leng, depth_feet, length,
                       ST_AsMvtGeom(
                         geom,
                         ST_TileEnvelope($1, $2, $3),
